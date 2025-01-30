@@ -1,0 +1,260 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO</title>
+</head>
+<style>
+    body{
+        background-color: #f4f4f4;
+    }
+    #main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        
+    }
+    #input{
+        width: 300px;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    #ADD-TASK{
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #28a745;
+        color: #fff;
+        cursor: pointer;
+    }
+    #ADD-TASK:hover{
+        background-color: #218838;
+    }
+    #TO-DO-LIST{
+        list-style: none;
+    }
+    #myButton{
+        background-color: rgb(13, 200, 216);
+        color: white;
+        box-shadow: 5px 5px 5px 5px #888888; 
+        border-radius: 5px;
+        padding: 10px  25px 10px 25px;
+        display: inline;
+
+
+        
+    }
+
+    li{
+        display: inline-block;
+        list-style: none;
+        background-color: #cbe6ea;
+        padding: 10px  25px 10px 25px; 
+        text-align: center;  
+        box-shadow: 5px 5px 5px 5px #888888; 
+        border-radius: 5px;
+        margin-right: 50px;
+    }
+    span{
+        display: inline-block;
+        list-style: none;
+        background-color: #cbe6ea;
+        padding: 10px  25px 10px 25px; 
+        text-align: center;  
+        box-shadow: 5px 5px 5px 5px #888888; 
+        border-radius: 5px;
+        margin-right: 50px;
+    }
+    #remain{
+        width: 300px;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+        color: red;
+        font-size: 20px;
+    }
+    #edit{
+        background-color: rgb(13, 200, 216);
+        color: white;
+        margin-left: 50px;
+        box-shadow: 5px 5px 5px 5px #888888; 
+        border-radius: 5px;
+        padding: 10px  25px 10px 25px;
+        display: inline;
+    }
+    #comp{
+        background-color: rgb(216, 209, 13);
+        color:black;
+        box-shadow: 5px 5px 5px 5px #888888; 
+        border-radius: 5px;
+        padding: 10px  25px 10px 25px;
+        display: none;
+
+    }
+    #completed{
+        position: relative;
+        
+    }
+    #completed_list{
+        padding-top: 10px;
+        padding-bottom: 20px;
+        list-style: none;
+        position: absolute;
+        z-index: 2;
+        background-color: #f4f4f4;
+        border-radius: 10px;
+        box-shadow: 5px 5px 5px 5px #888888;
+        display: none;
+       
+    }
+
+</style>
+
+<body>
+
+    <div id="main" >
+        <button id="comp" onclick="view()">COMPLETED</button>
+        <div id="task-no">
+         <h1 style="padding-left: 45px;">REMAINING</h1> <br>
+         <input type="text"  id="remain" disabled >
+         <div id="completed">
+            <ul id="completed_list">
+
+            </ul>
+        </div>
+    
+        </div>
+        <h1>TO-DO-LIST</h1>
+        <input type="text" id="input" placeholder="Enter your task" required>
+        <button id="ADD-TASK" onclick="to_do()">ADD-TASK</button>
+        <ul id="TO-DO-LIST">
+        </ul>
+        <ul>
+        </ul>
+
+    </div>
+    
+</body>
+<script>
+    let ser=1;
+    let tas_k=0;
+    task=(para)=>{
+        const remain=document.getElementById('remain');
+        var x=document.getElementById('ip');
+        
+
+        if (para==0){
+            
+            tas_k+=1;
+            remain.value=tas_k;
+        }
+        else{
+            if(tas_k==0){
+                tas_k=0;
+                remain.value=tas_k;
+            }
+            else{
+                tas_k-=1;
+                remain.value=tas_k;
+            }
+            
+        }
+        
+
+    }
+    to_do=()=>{
+    
+    let ip=document.getElementById('input').value;
+    const ul=document.getElementById('TO-DO-LIST');
+    const hr=document.createElement('hr');
+    const sp=document.createElement('span');
+    sp.innerText=ser;
+    
+    const li=document.createElement('li');
+    if(ip===""){
+        alert("please add some to-do")
+    }
+    else{
+        task(0)
+        ser+=1;
+        ul.appendChild(sp);
+        li.innerText= ip;
+        li.style.minWidth = "250px";
+        ul.appendChild(li)
+
+        ///button striked
+        const butt=document.createElement('button');
+    
+        butt.innerText='Strike';
+        ul.appendChild(butt);
+        butt.onclick=function(){
+        const ul_comp=document.getElementById('completed_list');
+        
+        if(ser>1){
+            ser-=1;
+
+        }
+        sp.remove();
+        hr.remove();
+        ul.removeChild(li);
+        ul.removeChild(butt);
+        edit.remove();
+        document.getElementById('comp').style.display="inline";
+        
+        ul_comp.appendChild(li);
+        ul_comp.appendChild(document.createElement('br'));
+        
+
+        
+        task(1);
+    }
+        butt.style.backgroundColor = "blue";
+        butt.style.color = "white";
+        butt.setAttribute("id", "myButton");
+        li.style.listStyle = "none";
+        
+        document.getElementById('input').value='';
+        ///button for edit
+        const edit=document.createElement('button');
+        edit.innerText='EDIT';
+        edit.setAttribute("id","edit");
+        ul.appendChild(edit);
+        edit.onclick=function(){
+            document.getElementById('input').value=li.innerText
+            document.getElementById('input').focus();
+            document.getElementById("ADD-TASK").innerText="SAVE";
+            var save=document.getElementById("ADD-TASK");
+            save.onclick=function(){
+                if(save.innerText==="SAVE"){
+                    li.innerText=document.getElementById('input').value;
+                    document.getElementById('input').value='';
+                    document.getElementById("ADD-TASK").innerText="ADD-TASK";
+                }
+                else{
+                    to_do();
+                }
+            }
+ 
+
+        }
+
+        ul.appendChild(hr);
+    }
+    }
+    view=()=>{
+        const comp=document.getElementById('completed_list');
+        if(comp.style.display==="none"){
+            comp.style.display="block";
+        }
+        else{
+            comp.style.display="none";
+        }
+    }
+</script>
+</html>

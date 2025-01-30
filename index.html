@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <style>
+        nav{
+            display: inline-flex;
+            justify-content: space-between;
+        }
+        #show{
+            display:flex;
+            gap: 60px;
+            font-size: 20px;
+            padding-left:480px; 
+        }
+        
+        #show li{
+            list-style: none;   
+        }#side li{
+            padding: 20px;
+            
+        }
+        #side{
+            margin-left: 250px;
+            display: none;
+            position: relative;
+            
+        }
+        #content{
+            position: absolute;
+            background-color: gray;
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 10px;
+            text-align:start;
+            font-size: 20px;
+            list-style: none;
+            padding: 20px;
+        }
+        .dropdown{
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 120px;
+            padding-top: 4px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 4;
+            border-radius: 10px;
+            text-align: center;
+        }
+    /*    #ser:hover .dropdown{
+            display: block;
+        }*/
+        .dropdown > a:hover{
+            background-color: lightgray;    
+        }
+        #ser:hover{
+            cursor: pointer;
+        }
+        #p{
+            display: inline-block;
+            margin-top: 2px;
+            position: absolute;
+        }
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            background-color: black;
+            mask-image: linear-gradient(to right, transparent,black 10% 90%, transparent);
+        }
+
+        .slider img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit:contain;
+            transition: filter 0.3s;
+            left: 90%;
+            filter: grayscale(0);
+            animation: autoRunSlider 10s ease-in infinite;
+
+
+        }
+
+        .slider img:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .slider img:nth-child(2) {
+            animation-delay: 2s;
+        }
+
+        .slider img:nth-child(3) {
+            animation-delay: 4s;
+        }
+
+        .slider img:nth-child(4) {
+            animation-delay: 6s;
+        }
+
+        .slider img:nth-child(5) {
+            animation-delay: 8s;
+        }
+
+        @keyframes autoRunSlider {
+            0% {
+                left: 100%;
+            }
+            100% {
+                left: -100%;
+            }
+        }
+
+        .slider:hover img {
+            animation-play-state: paused !important;
+            filter: grayscale(1);
+        }
+
+        .slider img:hover {
+            filter: grayscale(0);
+        }
+
+    </style>
+</head>
+<body>
+    
+    <nav>
+        <ul id="show">
+            <li>Home</li>
+            <li>About</li>
+            <li id="ser" onmouseover="myfunction()" onmouseout="myfunction1()">Service
+                <div class="dropdown">
+                <a href="to-do.html" style="text-decoration: none;">TO-DO-LIST</a><hr>
+                <a href="notes.html">TOSS</a> 
+            </div>
+           </li>
+            <li>Contact</li>
+            
+            <li id="account" style="background-color:yellowgreen; border-radius: 5px;">
+                <div style="position: relative;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="#888">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M12 14c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z" />
+              </svg> <p id="p" style="font-size: 20px; margin-left: 10px; background-color: beige;">no_account</p>
+            </div>
+            </li>
+            <li ><button onclick="side()" id="sidebut" style="margin-left: 75px; position: absolute;">☰</button></li>
+        </ul>
+        
+    <div id = "side">
+        <button style="position: absolute; z-index: 3;" onclick="side1()">✖</button>
+        <div id="content">
+            <li><a href="chat1.html">login</a></li>
+            <hr>
+            <li><a href="chat.html">signup</a> </li>
+            <hr>
+            <li><button onclick="logout()">log_out</button></li>
+        </div>
+    </div>
+    </nav>
+
+    <div>
+        <div class="slider" >
+            <img src="cars.jpg" alt="Image 1">
+            <img src="cars1.jpg" alt="Image 2">
+            <img src="cars2.jpg" alt="Image 3" >
+            <img src="cars3.jpg" alt="Image 4">
+            <img src="cars4.jpg" alt="Image 5">
+        </div>
+    </div>
+    <script src="all.js">
+
+    </script>
+</body>
+</html>

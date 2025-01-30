@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        #main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        #input {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #ADD-TASK {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        #ADD-TASK:hover {
+            background-color: #218838;
+        }
+        #TO-DO-LIST {
+            list-style-type: none;
+            padding: 0;
+        }
+        #TO-DO-LIST li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+            background-color: white;
+            border-radius: 5px;
+        }
+        #TO-DO-LIST span {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <h1>To-Do List</h1>
+        <input type="text" id="input" placeholder="Enter a task">
+        <button id="ADD-TASK" onclick="to_do()">Add</button>
+        <ul id="TO-DO-LIST"></ul>
+    </div>
+
+    <script>
+        let serialCounter = 1; // Global counter for serial numbers
+
+        function to_do() {
+            const ip = document.getElementById('input').value;
+            if (ip.trim() === '') {
+                alert('Please enter a task.');
+                return;
+            }
+
+            const ul = document.getElementById('TO-DO-LIST');
+            const li = document.createElement('li');
+            const sp = document.createElement('span');
+
+            // Set the serial number
+            sp.innerText = serialCounter;
+            serialCounter += 1;
+
+            // Append the serial number to the list item
+            li.appendChild(sp);
+
+            // Set the task text
+            const taskText = document.createElement('span');
+            taskText.innerText = ip;
+            taskText.style.minWidth = "250px";
+            li.appendChild(taskText);
+
+            // Create the delete button
+            const butt = document.createElement('button');
+            butt.innerText = 'Delete';
+            butt.onclick = function() {
+                ul.removeChild(li);
+                updateSerialNumbers(); // Update the serial numbers
+            };
+
+            // Append the delete button to the list item
+            li.appendChild(butt);
+
+            // Append the list item to the list
+            ul.appendChild(li);
+
+            // Clear the input field
+            document.getElementById('input').value = '';
+        }
+
+        // Function to update the serial numbers
+        function updateSerialNumbers() {
+            const ul = document.getElementById('TO-DO-LIST');
+            const listItems = ul.getElementsByTagName('li');
+            serialCounter = 1; // Reset the counter
+            for (let i = 0; i < listItems.length; i++) {
+                const span = listItems[i].getElementsByTagName('span')[0];
+                span.innerText = serialCounter;
+                serialCounter += 1;
+            }
+        }
+    </script>
+</body>
+</html>
