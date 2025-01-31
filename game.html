@@ -93,6 +93,7 @@
     
 </body>
 <script>
+    var audio = new Audio('muthu.mp3')
     var name=prompt('Enter your name');
     alert('RULES \n Click on the green circle to increase \n your score You have 60 seconds to play \n Good luck!',);
     document.getElementById('name').innerText=name;
@@ -142,9 +143,7 @@ function timmer(option){
         }
          
     }, option);
-}// Interval set to 1 second (1000 milliseconds)
-    // for color changing
-
+}
     function changeColor(interval){
         const circle=[document.getElementById('1'),document.getElementById('2'),document.getElementById('3'),document.getElementById('4'),document.getElementById('5'),document.getElementById('6'),document.getElementById('7'),document.getElementById('8'),document.getElementById('9')];
         circle[interval].style.backgroundColor='green';
@@ -160,6 +159,7 @@ function timmer(option){
         const intervals=event.target;
         if (intervals.style.backgroundColor==='green'){
                 intervals.style.backgroundColor='blue';
+                audio.play();
                 score+=1;
                 document.getElementById('score').innerText=score;
                 
