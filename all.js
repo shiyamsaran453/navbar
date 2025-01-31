@@ -82,7 +82,7 @@ function update() {
 function logout() {
     localStorage.removeItem('userEmail'); // Clear the logged-in user's email from localStorage
     update(); // Update the navbar text
-    window.location.href = 'navbar.html'; // Redirect to the navbar page
+    window.location.href = 'index.html'; // Redirect to the navbar page
 }
 
 // Call update when the page loads
