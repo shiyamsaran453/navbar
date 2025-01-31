@@ -37,7 +37,7 @@ function signup() {
         localStorage.setItem('userPassword', password);
         message.textContent = 'Signup successful! You can now log in.';
         message.style.color = 'green';
-        window.location.href = 'navbar.html';
+        window.location.href = 'index.html';
         var x=document.getElementById("p");
         x.textContent="hello "+name;
         
@@ -59,7 +59,7 @@ function login() {
     if (email === storedEmail && password === storedPassword) {
         localStorage.setItem('loggedInUser', email); // Store the logged-in user's email
         alert('Welcome! You have successfully logged in.');
-        window.location.href = 'navbar.html'; // Redirect to the navbar page
+        window.location.href = 'index.html'; // Redirect to the navbar page
     } else {
         message.textContent = 'Invalid email or password.';
         message.style.color = 'red';
