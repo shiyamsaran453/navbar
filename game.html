@@ -60,6 +60,7 @@
 <body>
     <div id="difficulty" >
         <div id="buttons">
+            
 
         <button onclick="select(1),diable_button()">EASY</button>
         <button onclick="select(2), diable_button()">MEDIUM</button>
@@ -94,8 +95,9 @@
 </body>
 <script>
     var audio = new Audio('muthu.mp3')
+    var audio_1=new Audio('vadivelu.mp3')
     var name=prompt('Enter your name');
-    alert('RULES \n Click on the green circle to increase \n your score You have 60 seconds to play \n Good luck!',);
+    alert('RULES \n Click on the green circle to increase \n your score You have 30 seconds to play \nget more than 10 mars to win\n Good luck!',);
     document.getElementById('name').innerText=name;
 
     var score=0;
@@ -121,13 +123,17 @@
 
 
 function timmer(option){
-    let timeLeft = 60; // 60 seconds
+    let timeLeft = 30; // 60 seconds
     const timerElement = document.getElementById('timer');
 
     const countdown = setInterval(() => {
         if (timeLeft <= 0) {
             clearInterval(countdown);
             timerElement.innerText = "Time's up!";
+            if(score <=10){
+                audio_1.play()
+
+            }
         } else {
             timerElement.innerText = timeLeft;
             timeLeft--;
@@ -172,6 +178,7 @@ function timmer(option){
             document.getElementById('buttons').style.display='block';
         }
     }
+
     
 
 </script>
