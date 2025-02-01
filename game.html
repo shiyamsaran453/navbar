@@ -16,6 +16,7 @@
             background-color: red;
             margin: 10px;
             border:2px solid black;
+            background-size: cover;
         }
         #timer{
             text-align: center;
@@ -94,9 +95,17 @@
     
 </body>
 <script>
+    
+
     var audio = new Audio('muthu.mp3')
     var audio_1=new Audio('vadivelu.mp3')
+    var name_audio=new Audio('name.mp3')
+    var vikram=new Audio('vikram.mp3')
+    var audio_2=new Audio('sonnamutha.mp3')
+    var audio_3=new Audio('arasiyal.mp3')
+    var audio_4=new Audio('katham.mp3')
     var name=prompt('Enter your name');
+
     alert('RULES \n Click on the green circle to increase \n your score You have 30 seconds to play \nget more than 10 mars to win\n Good luck!',);
     document.getElementById('name').innerText=name;
 
@@ -109,12 +118,18 @@
         let selection=select;
         if(selection==1){
             timmer(1000);
+            vikram.play();
+
         }
         else if(selection==2){
             timmer(500);
+            vikram.play();
+
         }
         else{
             timmer(250);
+            vikram.play();
+
         }
 
 
@@ -130,8 +145,33 @@ function timmer(option){
         if (timeLeft <= 0) {
             clearInterval(countdown);
             timerElement.innerText = "Time's up!";
-            if(score <=10){
+            if(score <=10 && option===1000){
+                if(timerElement.innerText==="Time's up!"){
+                    vikram.pause();
+                }
                 audio_1.play()
+
+            }
+            else if(score <=10 && option===500 ){
+                if(timerElement.innerText==="Time's up!"){
+                    vikram.pause();
+                }
+                audio_3.play()
+
+            }
+            else if(score <=10 && option===250 ){
+                
+                if(timerElement.innerText==="Time's up!"){
+                    vikram.pause();
+                }
+                audio_2.play()
+
+            }
+            else{
+                document.getElementById('name').innerText=name+' You won';
+                audio_4.play();
+               
+
 
             }
         } else {
@@ -152,10 +192,11 @@ function timmer(option){
 }
     function changeColor(interval){
         const circle=[document.getElementById('1'),document.getElementById('2'),document.getElementById('3'),document.getElementById('4'),document.getElementById('5'),document.getElementById('6'),document.getElementById('7'),document.getElementById('8'),document.getElementById('9')];
-        circle[interval].style.backgroundColor='green';
+        circle[interval].style.backgroundImage='url("rat.jpg")';
         circle.forEach((cir)=>{
             if(cir!=circle[interval]){
                 cir.style.backgroundColor='red';
+                cir.style.backgroundImage='';
                 cir.removeEventListener('click',click);
             }
         })
@@ -163,13 +204,14 @@ function timmer(option){
     }
     function click(event){
         const intervals=event.target;
-        if (intervals.style.backgroundColor==='green'){
-                intervals.style.backgroundColor='blue';
+        if (intervals.style.backgroundImage==='url("rat.jpg")'){
+                intervals.style.backgroundImage=URL='url("rat_dead.jpg")';
                 audio.play();
                 score+=1;
                 document.getElementById('score').innerText=score;
                 
             }
+
 
         }
     function diable_button(){
@@ -178,6 +220,8 @@ function timmer(option){
             document.getElementById('buttons').style.display='block';
         }
     }
+   // window.onload=name_audio.play();
+
 
     
 
