@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        nav{
+            display: inline-flex;
+            justify-content: space-between;
+        }
+        #show{
+            display:flex;
+            gap: 60px;
+            font-size: 20px;
+            padding-left:480px; 
+        }
+        
+        #show li{
+            list-style: none;   
+        }#side li{
+            padding: 20px;
+            
+        }
+        #side{
+            margin-left: 250px;
+            display: none;
+            position: relative;
+            
+        }
+        #content{
+            position: absolute;
+            background-color: gray;
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 10px;
+            text-align:start;
+            font-size: 20px;
+            list-style: none;
+            padding: 20px;
+        }
+        .dropdown{
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 120px;
+            padding-top: 4px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 4;
+            border-radius: 10px;
+            text-align: center;
+        }
+    /*    #ser:hover .dropdown{
+            display: block;
+        }*/
+        .dropdown > a:hover{
+            background-color: lightgray;    
+        }
+        #ser:hover{
+            cursor: pointer;
+        }
+        #p{
+            display: inline-block;
+            margin-top: 2px;
+            position: absolute;
+        }
+        #pre_view {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border: 2px solid red;
+            display: none;
+        }
+        #div{
+            width: 300px;
+            height: 500px;
+            display:flex;
+            flex-direction: column;
+            border: 2px solid black;
+            display: none;
+            overflow:auto; 
+            word-break: break-word;
+        }
+        #img{
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border: 2px solid red;
+            display: none;
+        }
+        
+
+
+    </style>
+</head>
+<body>
+    
+    <nav>
+        <ul id="show">
+            <li>Home</li>
+            <li>About</li>
+            <li id="ser" onmouseover="myfunction()" onmouseout="myfunction1()">Service
+                <div class="dropdown">
+                <a href="to-do.html" style="text-decoration: none;">TO-DO-LIST</a><hr>
+                <a href="notes.html">TOSS</a><hr>
+                
+                <a href="game.html"> click_game</a> 
+            </div>
+           </li>
+            <li>Contact</li>
+            
+            <li id="account" style="background-color:yellowgreen; border-radius: 5px;">
+                <div style="position: relative;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="#888">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M12 14c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z" />
+              </svg> <p id="p" style="font-size: 20px; margin-left: 10px; background-color: beige;">no_account</p>
+            </div>
+            </li>
+            <li ><button onclick="side()" id="sidebut" style="margin-left: 75px; position: absolute;">☰</button></li>
+        </ul>
+        
+    <div id = "side">
+        <button style="position: absolute; z-index: 3;" onclick="side1()">✖</button>
+        <div id="content">
+            <li><a href="chat1.html">login</a></li>
+            <hr>
+            <li><a href="chat.html">signup</a> </li>
+            <hr>
+            <li><a href="admin.html">Admin_login</a></li>
+            <li><button onclick="logout()">log_out</button></li>
+        </div>
+    </div>
+    </nav>
+
+    <div id="PRODUCT">
+        <!-- Products will be loaded here -->
+    </div>
+
+    <script src="all1.js"></script>
+</body>
+</html>
